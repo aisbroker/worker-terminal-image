@@ -13,6 +13,7 @@ USER root
 RUN apt-get update \
     && apt-get -y upgrade \
     && apt-get install -y \
+        # install normal tools
         bash \
         ca-certificates \
         curl \
@@ -34,6 +35,10 @@ RUN apt-get update \
         vim \
         wget \
     \
+    # install uv \
+    && ( curl -LsSf https://astral.sh/uv/install.sh | sh ) \
+    \
+    # install docker \
     && install -m 0755 -d /etc/apt/keyrings \
     && curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc \
     && chmod a+r /etc/apt/keyrings/docker.asc \
@@ -44,10 +49,10 @@ RUN apt-get update \
         docker-ce-cli \
         docker-compose-plugin \
     \
+    # install codex CLI \
     && npm install -g @openai/codex \
     \
-    && ( curl -LsSf https://astral.sh/uv/install.sh | sh ) \
-    \
+    # cleanup \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
