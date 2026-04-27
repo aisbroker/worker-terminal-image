@@ -55,6 +55,9 @@ RUN    date -u +"%Y-%m-%dT%H:%M:%S%:z" >>      /root/.worker-terminal-image-gith
     && mkdir -p                           /workspace \
     && date -u +"%Y-%m-%dT%H:%M:%S%:z" >> /workspace/.worker-terminal-image-github-build-was-here 
 
+RUN    git config --global user.email "c@example.com" \
+    && git config --global user.name "C H" \
+    && git config --global pull.rebase false  # merge
+
 WORKDIR /workspace
 
-CMD ["sh", "-lc", "while true; do echo -n .; sleep 60; done"]
