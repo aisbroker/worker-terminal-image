@@ -7,7 +7,7 @@ on:
     tags:
       - "v*.*.*"
   schedule:
-    - cron: '0 6 * * *' # every day at 06:00 UTC
+    - cron: '0 4 * * *' # every day at 04:00 UTC or a bit later
   workflow_dispatch:
 
 env:
